@@ -40,34 +40,22 @@ export function FilterContainer() {
   }
 
   function handleGenderChange(id: DropdownItem<Gender>['id']) {
-    console.log('gender change: ', id, idToGender(id))
     predicates = updateGenderPredicate(idToGender(id), predicates)
-
-    // setPredicates(updateGenderPredicate(idToGender(id), predicates))
-    // setPredicates(newP)
-    logPredicates()
-
     filterPeople()
   }
 
   function handleIdChange(searchText: string) {
-    console.log('name change: ', searchText)
     predicates = updateIdPredicate(searchText, predicates)
-    logPredicates()
     filterPeople()
   }
 
   function handleNameChange(searchText: string) {
-    console.log('name change: ', searchText)
     predicates = updateNamePredicate(searchText, predicates)
-    logPredicates()
     filterPeople()
   }
 
-  function handleAgeChange(ageText: string) {
-    console.log('name change: ', ageText)
-    predicates = updateAgePredicate(ComparisonType['<'], +ageText, predicates)
-    logPredicates()
+  function handleAgeStringChange(age: string) {
+    predicates = updateAgePredicate(ComparisonType['<'], +age, predicates)
     filterPeople()
   }
 
@@ -116,7 +104,7 @@ export function FilterContainer() {
         people={people}
         handleIdChange={handleIdChange}
         handleNameChange={handleNameChange}
-        handleAgeChange={handleAgeChange}
+        handleAgeChange={handleAgeStringChange}
         handleGenderChange={handleGenderChange}
         handleStateChange={handleStateChange}
       ></PeopleTable>

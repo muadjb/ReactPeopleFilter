@@ -40,35 +40,6 @@ export default function PeopleTable({
     <table>
       <thead>
         <tr>
-          <th>
-            <input
-              className='border'
-              type='search'
-              onChange={e => handleIdChange(e.target.value)}
-            />
-          </th>
-          <th>
-            <input
-              className='border'
-              type='search'
-              onChange={e => handleNameChange(e.target.value)}
-            />
-          </th>
-          <th>
-            <input
-              className='border'
-              type='number'
-              onChange={e => handleAgeChange(e.target.value)}
-            />
-          </th>
-          <th>
-            <Dropdown items={genderItems} handleChange={handleGenderChange}></Dropdown>
-          </th>
-          <th>
-            <Dropdown items={stateItems} handleChange={handleStateChange}></Dropdown>
-          </th>
-        </tr>
-        <tr>
           <TableFilters
             handleAgeChange={handleAgeChange}
             handleGenderChange={handleGenderChange}

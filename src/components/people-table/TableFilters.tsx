@@ -1,7 +1,7 @@
 import React from 'react'
-import { Dropdown, DropdownItem } from '../dropdown/Dropdown'
 import { Gender, State } from '../../models/person.model'
 import { genderItems, stateItems } from '../../testdata/people-data'
+import { Dropdown, DropdownItem } from '../dropdown/Dropdown'
 import { InputSearch } from '../input/InputSearch'
 
 export interface TableFilterProps {
