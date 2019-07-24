@@ -48,8 +48,8 @@ export function FilterContainer() {
   function handleReset() {}
 
   return (
-    <>
-      <p>
+    <div>
+      <p className='text-center'>
         Showing {people.length} of {peopleSource.length}
       </p>
       <PeopleTable
@@ -60,6 +60,6 @@ export function FilterContainer() {
         handleGenderChange={handleGenderChange}
         handleStateChange={handleStateChange}
       ></PeopleTable>
-    </>
+    </div>
   )
 }

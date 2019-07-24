@@ -37,7 +37,7 @@ export default function PeopleTable({
   function setGenderPredicate(id: DropdownItem<Gender>['id']) {}
 
   return (
-    <table>
+    <table className='mx-auto'>
       <thead>
         <tr>
           <TableFilters
