@@ -1,12 +1,14 @@
 import React from 'react'
-import { Header } from './styles/components/header/Header'
-import PeopleTable from './styles/components/people-table/PeopleTable'
+import { Header } from './components/header/Header'
+import { FilterContainer } from './components/people-filter/FilterContainer'
+import Test from './components/test/Test'
 
 export function App() {
   return (
     <>
+      {/* <Test></Test> */}
       <Header></Header>
-      <PeopleTable people={peeps}></PeopleTable>
+      <FilterContainer></FilterContainer>
     </>
   )
 }

@@ -1,19 +1,23 @@
 import json from './people.json'
-import { Person } from '../models/person.model'
+import { Person, ALL, All } from '../models/person.model'
 import { uniqueProps } from '../utils/utils'
 import { DropdownItem } from '../components/dropdown/Dropdown'
 
-export const people = json as ReadonlyArray<Person>
+type Items<T, P extends keyof T> = ReadonlyArray<DropdownItem<T[P]>>
 
-export const genderItems = getDropdownItems('gender', people)
-export const stateItems = getDropdownItems('state', people)
+export const peopleSource = json as ReadonlyArray<Person>
 
-export function getDropdownItems<T, P extends keyof T>(
-  p: P,
-  xs: ReadonlyArray<T>
-): ReadonlyArray<DropdownItem<T[P]>> {
-  const uniq = uniqueProps(p, xs)
-  const items: ReadonlyArray<DropdownItem<T[P]>> = uniq.map((u, i) => ({ id: i, description: u }))
-  // return [{ id: 0, description: '-All-' }].concat(items)
-  return items
+export const genderItems = getDropdownItems('gender', peopleSource)
+export const stateItems = getDropdownItems('state', peopleSource)
+
+export function getDropdownItems<T, P extends keyof T>(p: P, xs: ReadonlyArray<T>): Items<T, P> {
+  const itemAll: DropdownItem<T[P]> = { id: -1, description: ALL }
+
+  const items = uniqueProps(p, xs).map(toDropdownItem)
+
+  return [itemAll].concat(items)
+}
+
+function toDropdownItem<T>(x: T, i: number): DropdownItem<T> {
+  return { id: i, description: x }
 }

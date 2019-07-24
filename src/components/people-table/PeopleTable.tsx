@@ -1,10 +1,16 @@
 import React from 'react'
-import { Dropdown } from '../dropdown/Dropdown'
-import { Person } from '../../models/person.model'
+import { Gender, Person, State } from '../../models/person.model'
 import { genderItems, stateItems } from '../../testdata/people-data'
+import { Dropdown, DropdownItem } from '../dropdown/Dropdown'
+import { TableFilters } from './TableFilters'
 
 export interface TableProps {
   people: ReadonlyArray<Person>
+  handleIdChange: (s: string) => void
+  handleNameChange: (s: string) => void
+  handleAgeChange: (s: string) => void
+  handleGenderChange: (id: DropdownItem<Gender>['id']) => void
+  handleStateChange: (id: DropdownItem<State>['id']) => void
 }
 
 interface PeopleTableColumn {
@@ -20,21 +26,60 @@ const columns: ReadonlyArray<PeopleTableColumn> = [
   { field: 'state', header: 'State' },
 ]
 
-export default function PeopleTable({ people }: TableProps) {
+export default function PeopleTable({
+  people,
+  handleIdChange,
+  handleNameChange,
+  handleAgeChange,
+  handleGenderChange,
+  handleStateChange,
+}: TableProps) {
+  function setGenderPredicate(id: DropdownItem<Gender>['id']) {}
+
   return (
     <table>
       <thead>
         <tr>
           <th>
-            <Dropdown items={genderItems} handleChange={e => console.log(e)}></Dropdown>
+            <input
+              className='border'
+              type='search'
+              onChange={e => handleIdChange(e.target.value)}
+            />
           </th>
           <th>
-            <Dropdown items={stateItems} handleChange={e => console.log(e)}></Dropdown>
+            <input
+              className='border'
+              type='search'
+              onChange={e => handleNameChange(e.target.value)}
+            />
+          </th>
+          <th>
+            <input
+              className='border'
+              type='number'
+              onChange={e => handleAgeChange(e.target.value)}
+            />
+          </th>
+          <th>
+            <Dropdown items={genderItems} handleChange={handleGenderChange}></Dropdown>
+          </th>
+          <th>
+            <Dropdown items={stateItems} handleChange={handleStateChange}></Dropdown>
           </th>
         </tr>
         <tr>
+          <TableFilters
+            handleAgeChange={handleAgeChange}
+            handleGenderChange={handleGenderChange}
+            handleIdChange={handleIdChange}
+            handleNameChange={handleNameChange}
+            handleStateChange={handleStateChange}
+          ></TableFilters>
+        </tr>
+        <tr>
           {columns.map((c, i) => (
-            <th key={i} scope='col'>
+            <th key={i} className='text-left'>
               {c.header}
             </th>
           ))}
@@ -42,8 +87,8 @@ export default function PeopleTable({ people }: TableProps) {
       </thead>
 
       <tbody>
-        {people.map((p, i) => (
-          <tr key={i}>
+        {people.map(p => (
+          <tr key={p.id}>
             {columns.map((c, i) => (
               <td key={i}>{p[c.field]}</td>
             ))}
