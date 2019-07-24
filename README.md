@@ -1,44 +1,36 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This demo is built with
 
-## Available Scripts
+1. [Create React App](https://github.com/facebook/create-react-app).
+2. [Typescript](https://www.typescriptlang.org/)
+3. [Tailwind CSS](https://tailwindcss.com/)
+4. [Ramda](https://ramdajs.com/)
+5. [Mockaroo](https://mockaroo.com/)
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+I'm exploring several aspets of React's architecture using a multiple filtered table. In Angular, I've discovered a good solution by combining filter predicates and observables. I'm curious to explore the same problem with multiple solutions offered by React.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Goals
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- Use different state management
+  - Prop drilling
+  - Redux / Mobx
+  - Context API
+- Explore Netlify functions to mimic backend
+- Rely on functional components and hooks exclusively
+- Compare async experience with promises vs observables
 
-### `npm test`
+## Current Progress
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- The basic table and filter interface works although it needs better styling.
+- All the filters work and combine effetively.
+- Predicate logic is spread into small files
+- Overall design is decenty modular.
 
-### `npm run build`
+## To do
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Split table into more components
+- Add a comparison dropdown to filter age by conitions like <= or !=
+- Explore other state management tools
+- Build simple backend to enable async data transfer
+- Implement observable and promise based async solutions

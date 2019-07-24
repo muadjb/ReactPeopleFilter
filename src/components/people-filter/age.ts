@@ -28,3 +28,15 @@ export function updateAgePredicate(
   // return isNilOrEmpty(age) ? noAgePredicate : addAge(c, age, noAgePredicate)
   return isNilOrEmpty(age) ? noAgePredicate : addAge(age, noAgePredicate)
 }
+
+export function updateAgeStringPredicate(age: string, predicates: Predicates): Predicates {
+  const noAgePredicate = removePredicates(['age'], predicates)
+  return isNilOrEmpty(age) ? noAgePredicate : addAgeString(age, noAgePredicate)
+}
+
+function addAgeString(age: string, predicates: Predicates): Predicates {
+  const p: Predicate = { name: 'age', f: ageStringPredicate(age) }
+  return append(p, predicates)
+}
+
+const ageStringPredicate = (age: string) => (p: Person): boolean => p.age.toString().includes(age)
